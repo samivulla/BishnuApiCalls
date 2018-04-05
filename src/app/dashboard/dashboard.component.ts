@@ -190,6 +190,7 @@ export class DashboardComponent implements OnDestroy {
             .subscribe({
                 next: (response) => {
                     this.gridOptions.rowData = response.data.patientVisitList;
+                    console.log(this.gridOptions);
                 }
             });
     }
