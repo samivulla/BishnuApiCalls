@@ -1,0 +1,29 @@
+.name-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.name-container>img {
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 0 0 auto;
+}
+.name-container>span {
+    overflow: hidden;
+    padding: 5px;
+    min-width: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.name-container>*+* {
+    margin-left: 5px;
+}
+
+:host{
+    width: 100%;
+}

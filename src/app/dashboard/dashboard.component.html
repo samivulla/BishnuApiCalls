@@ -1,0 +1,42 @@
+<!-- <h3>Top Heroes</h3>
+<div class="grid grid-pads">
+  <a *ngFor="let hero of heroes" class="col-1-4"
+    routerLink="/detail/{{hero.id}}">
+    <div class="module hero">
+      <h4>{{hero.name}}</h4>
+    </div>
+  </a>
+</div> -->
+<form [formGroup]="filterForm" style="display:inline-block">
+  <div style="margin-bottom: 10px; display: inline-block">
+    <label>From</label>
+    <input type="date" formControlName="fromDate" name="fromDate">
+  </div>
+  <div style="margin-bottom: 10px; display: inline-block">
+    <label>To</label>
+    <input type="date" formControlName="toDate" name="toDate">
+  </div>
+</form>
+<button type="button" [disabled]="filterForm.invalid" (click)="getData()">Search</button>
+
+<div class="pt-dt-grid" *blockUI="'patient-grid'">
+  <ag-grid-angular #agGrid style="width: 100%; height: 500px;" 
+    class="ag-theme-balham" 
+    enableSorting
+    enableColResize
+    enableFilter
+    rowSelection="multiple"
+    [groupSelectsChildren]="true"
+    [suppressRowClickSelection]="true"
+    floatingFilter
+    [rowData]='gridOptions.rowData'
+    (selectionChanged)="onCheckboxSelection($event)"
+    (gridReady)="onGridReady($event)"
+    (cellValueChanged)="onCellValueChanged($event)"
+    [gridOptions]="gridOptions">
+  </ag-grid-angular>
+</div>
+
+<div class="json-viewer" *ngIf="selectedRows && selectedRows.length">
+  <ngx-json-viewer [json]="selectedRows"></ngx-json-viewer>
+</div>
